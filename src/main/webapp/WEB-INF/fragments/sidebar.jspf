@@ -1,0 +1,20 @@
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+    <div class="sidebar-brand">
+        <a href="<c:url value='/TodoList'/>" class="brand-link">
+            <span class="brand-text fw-light">Jaggaer</span>
+        </a>
+    </div>
+
+    <div class="sidebar-wrapper">
+        <nav class="mt-2">
+            <ul class="nav sidebar-menu flex-column new-task-btn" data-lte-toggle="treeview" role="menu">
+                <li class="nav-item">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#taskModal" class="nav-link new-task-btn">
+                        <i class="nav-icon bi bi-plus-circle"></i>
+                        <p>New Task</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
