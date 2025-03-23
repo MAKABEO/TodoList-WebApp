@@ -5,14 +5,15 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class JPAUtil {
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
-            Persistence.createEntityManagerFactory("todoListPU");
+    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("todoListPU");
 
     public static EntityManager getEntityManager() {
-        return ENTITY_MANAGER_FACTORY.createEntityManager();
+        return FACTORY.createEntityManager();
     }
 
     public static void close() {
-        ENTITY_MANAGER_FACTORY.close();
+        if (FACTORY.isOpen()) {
+            FACTORY.close();
+        }
     }
 }
