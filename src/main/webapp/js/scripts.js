@@ -296,14 +296,14 @@ $(document).ready(function () {
             }
         },
         errorPlacement: function (error, element) {
-            error.addClass("error-message"); // Agrega la clase CSS para el error
-            error.insertAfter(element); // Inserta el mensaje justo después del campo
+            error.addClass("error-message");
+            error.insertAfter(element);
         },
         highlight: function (element) {
-            $(element).addClass("is-invalid"); // Agrega una clase de Bootstrap para resaltar el error
+            $(element).addClass("is-invalid");
         },
         unhighlight: function (element) {
-            $(element).removeClass("is-invalid"); // Remueve la clase si se corrige el error
+            $(element).removeClass("is-invalid");
         },
         submitHandler: function (form) {
             save();

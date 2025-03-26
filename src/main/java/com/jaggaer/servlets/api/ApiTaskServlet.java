@@ -27,6 +27,9 @@ import java.util.stream.Collectors;
 @WebServlet("/api/TodoList")
 public class ApiTaskServlet extends HttpServlet {
 
+    public static final int DEFAULT_PAGE = 1;
+    public static final int DEFAULT_PAGE_SIZE = 5;
+
     private final ITaskService taskService = TaskServiceFactory.getTaskService();
 
     private static final ObjectMapper objectMapper = new ObjectMapper()
@@ -47,8 +50,8 @@ public class ApiTaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("page"), 1), 1);
-        int size = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("size"), 5), 5);
+        int page = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("page"), DEFAULT_PAGE), DEFAULT_PAGE);
+        int size = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("size"), DEFAULT_PAGE_SIZE), DEFAULT_PAGE_SIZE);
 
         List<TaskDTO> tasks = taskService.getTasks(page, size).stream()
                 .map(TaskMapper.INSTANCE::toDTO)

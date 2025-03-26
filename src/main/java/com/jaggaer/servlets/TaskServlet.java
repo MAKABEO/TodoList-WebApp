@@ -25,13 +25,16 @@ import java.util.stream.Collectors;
 @WebServlet("/TodoList/*")
 public class TaskServlet extends HttpServlet {
 
+    public static final int DEFAULT_PAGE = 1;
+    public static final int DEFAULT_PAGE_SIZE = 5;
+
     private final ITaskService taskService = TaskServiceFactory.getTaskService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            int page = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("page"), 1), 1);
-            int size = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("size"), 5), 5);
+            int page = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("page"), DEFAULT_PAGE), DEFAULT_PAGE);
+            int size = Math.max(ParseUtils.parseIntOrDefault(req.getParameter("size"), DEFAULT_PAGE_SIZE), DEFAULT_PAGE_SIZE);
 
             List<TaskDTO> tasks = taskService.getTasks(page, size).stream()
                     .map(TaskMapper.INSTANCE::toDTO)
